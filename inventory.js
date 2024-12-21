@@ -41,6 +41,24 @@ function supprimer() {
     allProducts.splice(id - 1, 1);
 
 }
+function modiffier() {
+    let id= parseInt(prompt("entrer le nombre que veux supprimer:"));
+    const product = allProducts.find((p)=>p.id===id);
+    if(!product){
+        console.log("Produit introuvable");
+        return;
+    }
+    let nom = prompt("Entrer nouveux nom");
+    let description = prompt("Entrer nouveux description");
+    let prix = Number(prompt("Entrer nouveux prix"));
+    let quantite = Number(prompt("Entrer nouveux quantite"));
+
+    allProducts[id - 1].nom= nom;
+    allProducts[id - 1].description = description;
+    allProducts[id - 1].prix = prix;
+    allProducts[id - 1].quantite = quantite;
+
+}
 
 
 let choix;
@@ -58,11 +76,14 @@ do {
 	case 3:
             modiffier();
             break;
-        case 4:
+		      case 4:
+            supprimer();
+                break;
+        case 5:
             fs.writeFileSync("product.json", JSON.stringify(allProducts, null, 4));
             return;
         default:
             console.log("Choix invalide !");
             
     }
-} while (choix <= 4);
+} while (choix <= 5);
