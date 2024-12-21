@@ -23,6 +23,10 @@ function Menu() {
     console.log("4.supprimer un produit");
     console.log("5.quitter");
 }
+function afficher() {
+    console.log(allProducts);
+
+    }
 
 
 let choix;
@@ -34,11 +38,14 @@ do {
         case 1:
             ajoutter ();
             break;
-        case 5:
+	    case 2:
+            afficher();
+            break;
+        case 3:
             fs.writeFileSync("product.json", JSON.stringify(allProducts, null, 4));
             return;
         default:
             console.log("Choix invalide !");
             
     }
-} while (choix <= 1);
+} while (choix <= 3);
