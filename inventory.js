@@ -27,6 +27,20 @@ function afficher() {
     console.log(allProducts);
 
     }
+function supprimer() {
+
+    let id = parseInt(prompt("entrer le nombre de produit qui veux supprimer: "));
+    const index = allProducts.find((p) => p.id === id);
+
+    if (index === -1) {
+        console.log('Produit introuvable.');
+        return;
+    }
+
+
+    allProducts.splice(id - 1, 1);
+
+}
 
 
 let choix;
@@ -41,11 +55,14 @@ do {
 	    case 2:
             afficher();
             break;
-        case 3:
+	case 3:
+            modiffier();
+            break;
+        case 4:
             fs.writeFileSync("product.json", JSON.stringify(allProducts, null, 4));
             return;
         default:
             console.log("Choix invalide !");
             
     }
-} while (choix <= 3);
+} while (choix <= 4);
